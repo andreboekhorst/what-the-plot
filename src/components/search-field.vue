@@ -1,7 +1,7 @@
 <template>
   <div class="test">
-    <input v-model="searchterm"/>
-    <button type="button" name="button" @click="onSubmit(searchterm)">lala</button>
+    <input v-model.trim="searchterm"/>
+    <button type="button" name="button" @click="submit(searchterm)">lala</button>
     <hr />
     <ul>
       <li v-for="term in terms">{{ term }}</li>
@@ -11,7 +11,9 @@
 
 <script>
 export default {
+  props: {
 
+  },
   data: function(){
     return {
       searchterm: 'default',
@@ -20,10 +22,8 @@ export default {
   },
   methods: {
 
-    onSubmit: function(searchterm){
-      this.terms.push(searchterm);
-      this.searchterm = ""
-      console.log(this.terms)
+    submit: function(searchterm){
+      this.$emit('submit', this.searchterm );
     }
 
   }
