@@ -1,12 +1,12 @@
 [{
-	"id": "Pulp Fiction",
+	"name": "Pulp Fiction",
 	"plot": "Two Gangsters doing shit"
 },
 {
-	"id": "Planet of the Apes",
+	"name": "Planet of the Apes",
 	"plot": "Just apes throwing poo"
 },
 {
-	"id": "Monsters Inc.",
+	"name": "Monsters Inc.",
 	"plot": "Monsters scaring kids"
 }]

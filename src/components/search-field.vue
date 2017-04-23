@@ -1,11 +1,7 @@
 <template>
   <div class="test">
-    <input v-model.trim="searchterm"/>
+    <input v-model.trim="searchterm" placeholder="movie title here"/>
     <button type="button" name="button" @click="submit(searchterm)">lala</button>
-    <hr />
-    <ul>
-      <li v-for="term in terms">{{ term }}</li>
-    </ul>
   </div>
 </template>
 
@@ -16,7 +12,7 @@ export default {
   },
   data: function(){
     return {
-      searchterm: 'default',
+      searchterm: '',
       terms: []
     }
   },

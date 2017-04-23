@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>{{ score }}</h1>
+    <h1>{{ score }} / {{ maxQuestions }}</h1>
     <plotview :plotString="currentMovie.plot"></plotview>
     <searchfield @submit="onsubmit"></searchfield>
-    <p v-for="plot in plotArr">{{ plot.id }}</p>
+    <autosuggest></autosuggest>
   </div>
 </template>
 
@@ -11,6 +11,7 @@
 
 import plotview from './components/plotview.vue';
 import searchfield from './components/search-field.vue';
+import autosuggest from './components/autosuggest.vue';
 
 export default {
 
@@ -21,7 +22,7 @@ export default {
       currentMovie: {},
       plotArr: [],
       maxQuestions: 20,
-      currentQuestionIndex: 1,
+      currentQuestionIndex: 0,
       score: 0,
       timer: 20000, // Get more points if fast?
     }
@@ -30,6 +31,7 @@ export default {
   components: {
     'plotview': plotview,
     'searchfield': searchfield,
+    'autosuggest': autosuggest
   },
 
   methods: {
@@ -38,16 +40,18 @@ export default {
       return this.plotArr[Math.floor(Math.random()* this.plotArr.length)];
     },
 
-    showplot: function(){
-      this.currentMovie = this.getRandomMovie();
-    },
-
     addScore: function(){
         this.score++;
     },
 
     nextQuestion: function(){
+      this.currentQuestionIndex++;
+      this.currentMovie = this.getRandomMovie();
 
+    },
+
+    onMistake: function(){
+      console.log('it was', this.currentMovie.id );
     },
 
     onsubmit: function( val ){
@@ -56,7 +60,7 @@ export default {
         console.log('correct');
         this.addScore();
       } else {
-        console.log('wrong');
+        this.onMistake();
       }
 
       this.nextQuestion();
@@ -68,11 +72,22 @@ export default {
     }
 
   },
+
+  watch: {
+
+   currentQuestionIndex: function ( index ) {
+     if( index > this.maxQuestions ){
+       console.log('maxing out')
+     }
+   },
+
+ },
+
   created: function(){
 
     this.$http.get('/src/assets/plots.json').then(response => {
       this.plotArr = JSON.parse(response.bodyText);
-      this.showplot();
+      this.nextQuestion();
     }, response => {
       // error callback
     });
