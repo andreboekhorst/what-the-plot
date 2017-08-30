@@ -1,7 +1,9 @@
 <template>
   <div>
+
     <!-- optional indicators -->
     <i class="fa fa-spinner fa-spin" v-if="loading"></i>
+
     <template v-else>
       <i class="fa fa-search" v-show="isEmpty"></i>
       <i class="fa fa-times" v-show="isDirty" @click="reset"></i>
@@ -26,6 +28,7 @@
         <span v-text="item.name"></span>
       </li>
     </ul>
+
   </div>
 </template>
 
@@ -70,17 +73,20 @@ export default {
     // The callback function which is triggered when the user hits on an item
     // (required)
     onHit (item) {
-      // alert(item)
+      alert(item.name)
+
     },
 
     // The callback function which is triggered when the response data are received
     // (optional)
-    prepareResponseData (data) {
+    prepareResponseData (data, x) {
       // console.log('prepare', JSON.parse(data) );
       // data = ...
+      console.log('what data', data,x  )
       return data
     }
   }
+
 }
 </script>
 

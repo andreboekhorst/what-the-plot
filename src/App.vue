@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h1>{{ score }} / {{ maxQuestions }}</h1>
+    <h1>{{ score }} / {{ currentQuestionIndex }} | {{ maxQuestions }}</h1>
     <plotview :plotString="currentMovie.plot"></plotview>
-    <searchfield @submit="onsubmit"></searchfield>
-    <autosuggest></autosuggest>
+    <searchfield @submit="onsubmit" :moviePlots="plotArr"></searchfield>
   </div>
 </template>
 
@@ -12,6 +11,7 @@
 import plotview from './components/plotview.vue';
 import searchfield from './components/search-field.vue';
 import autosuggest from './components/autosuggest.vue';
+import movieList from './assets/plots.json';
 
 export default {
 
@@ -24,7 +24,7 @@ export default {
       maxQuestions: 20,
       currentQuestionIndex: 0,
       score: 0,
-      timer: 20000, // Get more points if fast?
+      timer: 20000,
     }
   },
 
@@ -47,11 +47,10 @@ export default {
     nextQuestion: function(){
       this.currentQuestionIndex++;
       this.currentMovie = this.getRandomMovie();
-
     },
 
     onMistake: function(){
-      console.log('it was', this.currentMovie.id );
+      console.log('it was', this.currentMovie.name );
     },
 
     onsubmit: function( val ){
@@ -68,7 +67,7 @@ export default {
     },
 
     checkAnswer( answer ){
-      return this.currentMovie.id == answer;
+      return this.currentMovie.name == answer;
     }
 
   },
@@ -81,18 +80,13 @@ export default {
      }
    },
 
- },
+  },
 
   created: function(){
-
-    this.$http.get('/src/assets/plots.json').then(response => {
-      this.plotArr = JSON.parse(response.bodyText);
-      this.nextQuestion();
-    }, response => {
-      // error callback
-    });
-
+    this.plotArr = movieList;
+    this.nextQuestion();
   }
+
 }
 </script>
 

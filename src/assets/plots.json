@@ -1,12 +1,28 @@
 [{
 	"name": "Pulp Fiction",
-	"plot": "Two Gangsters doing shit"
+	"plot": "The lives of two mob hit men, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption."
 },
 {
 	"name": "Planet of the Apes",
-	"plot": "Just apes throwing poo"
+	"plot": "After the apes suffer unimaginable losses, Caesar wrestles with his darker instincts and begins his own mythic quest to avenge his kind."
 },
 {
 	"name": "Monsters Inc.",
-	"plot": "Monsters scaring kids"
+	"plot": "In order to power the city, monsters have to scare children so that they scream. However, the children are toxic to the monsters, and after a child gets through, 2 monsters realize things may not be what they think."
+},
+{
+	"name": "Monsters Inc 2",
+	"plot": "In order to power the city, monsters have to scare children so that they scream. However, the children are toxic to the monsters, and after a child gets through, 2 monsters realize things may not be what they think."
+},
+{
+	"name": "Top Gun",
+	"plot": "As students at the United States Navy's elite fighter weapons school compete to be best in the class, one daring young pilot learns a few things from a civilian instructor that are not taught in the classroom."
+},
+{
+	"name": "Gremlins",
+	"plot": "A boy inadvertently breaks three important rules concerning his new pet and unleashes a horde of malevolently mischievous monsters on a small town."
+},
+{
+	"name": "Finding Nemo",
+	"plot": "After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home."
 }]
